@@ -307,5 +307,266 @@ class Author4 extends Person9
         return self::$centuryPopular;
     }
 }
+
 echo Author4::$centuryPopular . "\n";
-echo Author4::getCenturyAuthorWasPopular();
+echo Author4::getCenturyAuthorWasPopular() . "\n";
+
+
+#MULTIPLE CONSTRUCTORS:
+class Person10
+{
+    private $firstName;
+    private $lastName;
+    private $age;
+
+    #PARENT CONSTRUCTOR:
+    function __construct($nwFirst = "", $nwLast = "", $nwAge = "")
+    {
+        // echo "Person Constructor" . PHP_EOL;
+        $this->firstName = $nwFirst;
+        $this->lastName = $nwLast;
+        $this->age = $nwAge;
+    }
+
+    public function getFirstName()
+    {
+        return $this->firstName;
+    }
+    public function setFirstName($nwName)
+    {
+        $this->firstName = $nwName;
+    }
+    protected function getFullName()
+    {
+        return $this->firstName . " " . $this->lastName . PHP_EOL;
+    }
+}
+
+class Author5 extends Person10
+{
+    public static $centuryPopular = "19th";
+    private $penName;
+
+    #CHILD CONSTRUCTOR:
+    function __construct($nwFirst = "", $nwLast = "", $nwAge = "", $nwPenName = "")
+    {
+        // echo "Author Constructor" . PHP_EOL;
+        #ACCESSING PARENT:
+        parent::__construct($nwFirst, $nwLast, $nwAge);
+
+        $this->penName = $nwPenName;
+    }
+    public function getPenName()
+    {
+        return $this->penName . "\n" . PHP_EOL;
+    }
+
+    public function getCompleteName()
+    {
+        return $this->getFullName() . " A.K.A " . $this->penName . PHP_EOL;
+    }
+    public static function getCenturyAuthorWasPopular()
+    {
+        return self::$centuryPopular;
+    }
+}
+
+$newAuthor = new Author5("WALID", "DRAA", 22, "Dostoievski");
+echo $newAuthor->getCompleteName() . "\n";
+
+
+#DESTRUCTOR:
+class Person11
+{
+    private $firstName;
+    private $lastName;
+    private $age;
+
+    function __construct($nwFirst = "", $nwLast = "", $nwAge = "")
+    {
+        // echo "Person Constructor" . PHP_EOL;
+        $this->firstName = $nwFirst;
+        $this->lastName = $nwLast;
+        $this->age = $nwAge;
+    }
+
+    public function getFirstName()
+    {
+        return $this->firstName;
+    }
+    public function setFirstName($nwName)
+    {
+        $this->firstName = $nwName;
+    }
+    protected function getFullName()
+    {
+        return $this->firstName . " " . $this->lastName . PHP_EOL;
+    }
+}
+
+class Author6 extends Person11
+{
+    public static $centuryPopular = "19th";
+    private $penName;
+
+    function __construct($nwFirst = "", $nwLast = "", $nwAge = "", $nwPenName = "")
+    {
+        // echo "Author Constructor" . PHP_EOL;
+        parent::__construct($nwFirst, $nwLast, $nwAge);
+
+        $this->penName = $nwPenName;
+    }
+    public function getPenName()
+    {
+        return $this->penName . "\n" . PHP_EOL;
+    }
+
+    public function getCompleteName()
+    {
+        return $this->getFullName() . " A.K.A " . $this->penName . PHP_EOL;
+    }
+    public static function getCenturyAuthorWasPopular()
+    {
+        return self::$centuryPopular;
+    }
+
+    #CREATING:
+    function __destruct()
+    {
+        echo "People Respecting Power, And Humilating Cuteness. - " . $this->penName . "\n";
+    }
+}
+
+$newAuthor = new Author6("WALID", "DRAA", 22, "Dostoievski");
+echo $newAuthor->getCompleteName() . "\n";
+echo "This Is The End." . PHP_EOL;
+
+
+#FINAL KEYWORD:
+final class Person12
+{
+    private $firstName;
+    private $lastName;
+    private $age;
+
+    function __construct($nwFirst = "", $nwLast = "", $nwAge = "")
+    {
+        // echo "Person Constructor" . PHP_EOL;
+        $this->firstName = $nwFirst;
+        $this->lastName = $nwLast;
+        $this->age = $nwAge;
+    }
+
+    final public function getFirstName()
+    {
+        return $this->firstName;
+    }
+    public function setFirstName($nwName)
+    {
+        $this->firstName = $nwName;
+    }
+    protected function getFullName()
+    {
+        return $this->firstName . " " . $this->lastName . PHP_EOL;
+    }
+}
+
+class Author7 extends Person12
+{
+    public static $centuryPopular = "19th";
+    private $penName;
+
+    function __construct($nwFirst = "", $nwLast = "", $nwAge = "", $nwPenName = "")
+    {
+        // echo "Author Constructor" . PHP_EOL;
+        parent::__construct($nwFirst, $nwLast, $nwAge);
+
+        $this->penName = $nwPenName;
+    }
+    public function getPenName()
+    {
+        return $this->penName . "\n" . PHP_EOL;
+    }
+    public function getFirstName()
+    {
+        return $this->penName;
+    }
+
+    public function getCompleteName()
+    {
+        return $this->getFullName() . " A.K.A " . $this->penName . PHP_EOL;
+    }
+    public static function getCenturyAuthorWasPopular()
+    {
+        return self::$centuryPopular;
+    }
+}
+
+$newAuthor = new Author7("WALID", "DRAA", 22, "Dostoievski");
+echo $newAuthor->getFirstName() . "\n";
+
+
+
+#INTERFACES:
+interface Electricty
+{
+    public function voltage();
+    public function electricCordType();
+    public function outletStyle();
+}
+
+class Television implements Electricty
+{
+    function changeChannel()
+    {
+    }
+    function adjustVolume()
+    {
+    }
+    public function voltage()
+    {
+    }
+    public function electricCordType()
+    {
+    }
+    public function outletStyle()
+    {
+    }
+}
+
+
+#ABSTRACT CLASSES:
+abstarct class Electricty
+{
+    abstarct function voltage();
+    abstarct function electricCordType();
+    abstarct function outletStyle();
+
+    public function powerOn()
+    {
+
+    }
+    public function powerOff()
+    {
+
+    }
+}
+
+class Television extends Electricty
+{
+    function changeChannel()
+    {
+    }
+    function adjustVolume()
+    {
+    }
+    public function voltage()
+    {
+    }
+    public function electricCordType()
+    {
+    }
+    public function outletStyle()
+    {
+    }
+}
